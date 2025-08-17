@@ -17,7 +17,7 @@
   <button onclick="createAddQuoteForm()">Add Quote</button>
   <button onclick="exportToJsonFile()">Export Quotes</button>
   <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-
+<button id="fetchQuotesBtn">Fetch New Quotes from API</button>
   <!-- Category Filter -->
   <label for="categoryFilter">Filter by Category:</label>
   <select id="categoryFilter" onchange="filterQuotes()">
