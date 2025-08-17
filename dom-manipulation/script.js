@@ -318,3 +318,6 @@ async function syncQuotes() {
 }
 // Automatically sync quotes with the server every 5 minutes (300,000 milliseconds)
 setInterval(syncQuotes, 300000);
+// ... (code for fetching and posting quotes)
+
+showNotification("Quotes synced successfully! ✨");
