@@ -244,3 +244,28 @@ async function fetchQuotesFromPlaceholder() {
     showNotification("Failed to fetch quotes from API.");
   }
 }
+// Add this function to your script.js file
+
+async function postNewQuote(quote) {
+  try {
+    const response = await fetch('https://api.example.com/quotes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(quote), // Convert the quote object to a JSON string
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to post new quote to server.');
+    }
+
+    const result = await response.json();
+    console.log('Success:', result);
+    showNotification("Quote successfully saved to server!");
+    
+  } catch (error) {
+    console.error("Error posting new quote:", error);
+    showNotification("Failed to save quote to server.");
+  }
+}
