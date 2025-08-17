@@ -1,41 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Quote Generator</title>
-  <style>
-    body { font-family: system-ui, Arial, sans-serif; padding: 20px; line-height: 1.5; }
-    #quoteDisplay { margin: 16px 0; font-size: 1.2rem; font-style: italic; }
-    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
-    .form-container { margin-top: 20px; padding: 12px; border: 1px solid #e5e5e5; border-radius: 12px; }
-    input, select, button { padding: 8px 10px; font-size: 1rem; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <button id="newQuote">Show New Quote</button>
-
-    <!-- ✅ New Filter Dropdown -->
-    <label for="categoryFilter">Filter by Category:</label>
-    <select id="categoryFilter" onchange="filterQuotes()">
-      <option value="all">All Categories</option>
-    </select>
-
-    <!-- Export / Import -->
-    <button id="exportBtn">Export Quotes</button>
-    <label for="importFile" style="font-weight: 600;">Import Quotes:</label>
-    <input type="file" id="importFile" accept=".json" />
-  </div>
-
   <!-- Quote Display -->
-  <div id="quoteDisplay">Click “Show New Quote” to see one!</div>
+  <div id="quoteDisplay"></div>
 
-  <!-- Dynamic Add Quote Form injected via JS -->
+  <!-- Controls -->
+  <button onclick="showRandomQuote()">Show Random Quote</button>
+  <button onclick="createAddQuoteForm()">Add Quote</button>
+  <button onclick="exportToJsonFile()">Export Quotes</button>
+  <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+
+  <!-- Category Filter -->
+  <label for="categoryFilter">Filter by Category:</label>
+  <select id="categoryFilter" onchange="filterQuotes()">
+    <option value="all">All Categories</option>
+  </select>
+
+  <!-- Notification UI -->
+  <div id="notification"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
