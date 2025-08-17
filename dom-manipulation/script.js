@@ -171,3 +171,22 @@ addQuoteBtn.addEventListener("click", createAddQuoteForm);
 exportBtn.addEventListener("click", exportToJsonFile);
 importFile.addEventListener("change", importFromJsonFile);
 categoryFilter.addEventListener("change", filterQuotes);
+// Add this function to your script.js file
+
+async function fetchQuotesFromServer() {
+  try {
+    const response = await fetch('https://api.example.com/quotes'); // Replace with your actual API endpoint
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const serverQuotes = await response.json();
+    quotes = serverQuotes; // Overwrite local quotes with server data
+    saveQuotes(); // Save the new data to localStorage
+    populateCategories();
+    showRandomQuote();
+    showNotification("Quotes synced with server successfully!");
+  } catch (error) {
+    console.error("Failed to fetch quotes from server:", error);
+    showNotification("Failed to fetch quotes from server.");
+  }
+}
