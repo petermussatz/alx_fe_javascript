@@ -190,3 +190,57 @@ async function fetchQuotesFromServer() {
     showNotification("Failed to fetch quotes from server.");
   }
 }
+// Add this new function to your script.js file
+
+async function fetchQuotesFromPlaceholder() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const posts = await response.json();
+    
+    // Map the fetched data to match your quote object structure
+    const newQuotes = posts.map(post => ({
+      text: post.title, // Using the post title as the quote text
+      category: 'Placeholder' // Assigning a static category for fetched quotes
+    }));
+    
+    // Add the new quotes to your existing array
+    quotes.push(...newQuotes);
+    saveQuotes();
+    populateCategories();
+    showRandomQuote();
+    showNotification("Quotes fetched from Placeholder API successfully!");
+  } catch (error) {
+    console.error("Failed to fetch quotes from API:", error);
+    showNotification("Failed to fetch quotes from API.");
+  }
+}
+// Add this new function to your script.js file
+
+async function fetchQuotesFromPlaceholder() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const posts = await response.json();
+    
+    // Map the fetched data to match your quote object structure
+    const newQuotes = posts.map(post => ({
+      text: post.title, // Using the post title as the quote text
+      category: 'Placeholder' // Assigning a static category for fetched quotes
+    }));
+    
+    // Add the new quotes to your existing array
+    quotes.push(...newQuotes);
+    saveQuotes();
+    populateCategories();
+    showRandomQuote();
+    showNotification("Quotes fetched from Placeholder API successfully!");
+  } catch (error) {
+    console.error("Failed to fetch quotes from API:", error);
+    showNotification("Failed to fetch quotes from API.");
+  }
+}
