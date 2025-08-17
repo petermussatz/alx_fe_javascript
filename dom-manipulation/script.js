@@ -269,3 +269,50 @@ async function postNewQuote(quote) {
     showNotification("Failed to save quote to server.");
   }
 }
+// Add this new function to your script.js file
+
+async function syncQuotes() {
+  showNotification("Syncing with server...");
+  const serverUrl = 'https://api.example.com/quotes'; // Replace with your actual server endpoint
+
+  try {
+    // 1. Fetch quotes from the server
+    const response = await fetch(serverUrl);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const serverQuotes = await response.json();
+
+    // 2. Identify new quotes to send to the server
+    const localQuotesToPost = quotes.filter(
+      (localQuote) =>
+        !serverQuotes.some(
+          (serverQuote) => serverQuote.text === localQuote.text
+        )
+    );
+
+    // 3. Post new quotes to the server
+    if (localQuotesToPost.length > 0) {
+      for (const quote of localQuotesToPost) {
+        await fetch(serverUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(quote),
+        });
+      }
+    }
+
+    // 4. Update local storage with server quotes
+    quotes = serverQuotes;
+    saveQuotes();
+    populateCategories();
+    showRandomQuote();
+
+    showNotification("Quotes synced successfully! ✨");
+  } catch (error) {
+    console.error("Sync failed:", error);
+    showNotification("Sync failed. Please check your connection.");
+  }
+}
