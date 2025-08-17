@@ -158,3 +158,16 @@ function init() {
 
 // Initialize App
 init();
+// Add these lines at the beginning of your script
+const showQuoteBtn = document.getElementById("showQuoteBtn");
+const addQuoteBtn = document.getElementById("addQuoteBtn");
+const exportBtn = document.getElementById("exportBtn");
+const importFile = document.getElementById("importFile");
+const categoryFilter = document.getElementById("categoryFilter");
+
+// Add these listeners at the end of your script
+showQuoteBtn.addEventListener("click", showRandomQuote);
+addQuoteBtn.addEventListener("click", createAddQuoteForm);
+exportBtn.addEventListener("click", exportToJsonFile);
+importFile.addEventListener("change", importFromJsonFile);
+categoryFilter.addEventListener("change", filterQuotes);
