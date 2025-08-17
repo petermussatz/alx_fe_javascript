@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,21 +16,26 @@
 <body>
   <h1>Dynamic Quote Generator</h1>
 
+  <!-- Toolbar -->
   <div class="toolbar">
-    <label for="categorySelect">Category:</label>
-    <select id="categorySelect" aria-label="Quote category"></select>
     <button id="newQuote">Show New Quote</button>
 
-    <!-- ✅ Renamed button to match requirement -->
-    <button id="exportBtn" title="Export quotes as JSON">Export Quotes</button>
+    <!-- ✅ New Filter Dropdown -->
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+    </select>
 
+    <!-- Export / Import -->
+    <button id="exportBtn">Export Quotes</button>
     <label for="importFile" style="font-weight: 600;">Import Quotes:</label>
     <input type="file" id="importFile" accept=".json" />
   </div>
 
+  <!-- Quote Display -->
   <div id="quoteDisplay">Click “Show New Quote” to see one!</div>
 
-  <!-- The Add Quote form is injected dynamically by createAddQuoteForm() -->
+  <!-- Dynamic Add Quote Form injected via JS -->
   <script src="script.js"></script>
 </body>
 </html>
