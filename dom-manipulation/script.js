@@ -316,3 +316,5 @@ async function syncQuotes() {
     showNotification("Sync failed. Please check your connection.");
   }
 }
+// Automatically sync quotes with the server every 5 minutes (300,000 milliseconds)
+setInterval(syncQuotes, 300000);
